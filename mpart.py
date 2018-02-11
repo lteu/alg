@@ -1,6 +1,6 @@
 import numpy as np 
 
-# Edit Distance 3.8
+# Partition a set into two subsets such that the difference of subset sums is minimum
 # https://www.geeksforgeeks.org/partition-a-set-into-two-subsets-such-that-the-difference-of-subset-sums-is-minimum/
 
 # Given a set of integers, the task is to divide it into two sets 
@@ -28,7 +28,10 @@ for i in range(1,half+1):
 # # calculate
 for i in range(1,half+1):
 	for j in range(1,len(arr)+1):
-		R[i][j] = R[i][j-1] or R[i-arr[j-1]][j-1]
+		if arr[j-1] > i:
+			R[i][j] = R[i][j-1]
+		else:
+			R[i][j] = R[i][j-1] or R[i-arr[j-1]][j-1]
 
 print(np.matrix(R))
 
